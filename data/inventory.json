@@ -1,0 +1,47 @@
+[
+  {
+    "id": "66736d21-574f-4bf4-9aa9-ed7e9261d2fd",
+    "name": "coca cola",
+    "sku": "ROBOFLOW",
+    "category": "Soft drinks",
+    "quantity": 41,
+    "confidence": 0.709984756097561,
+    "detectedAt": "2026-11-15T16:20:19.049Z"
+  },
+  {
+    "id": "b31deebe-2fc7-40df-93a0-a5cc847f9104",
+    "name": "coke",
+    "sku": "ROBOFLOW",
+    "category": "Soft drinks",
+    "quantity": 34,
+    "confidence": 0.6764705882352942,
+    "detectedAt": "2026-11-15T16:20:19.049Z"
+  },
+  {
+    "id": "818ae747-1a94-4580-b2d7-2c0aa262e51e",
+    "name": "mountain dew",
+    "sku": "ROBOFLOW",
+    "category": "Soft drinks",
+    "quantity": 13,
+    "confidence": 0.7614182692307693,
+    "detectedAt": "2026-11-15T16:20:19.049Z"
+  },
+  {
+    "id": "dcdbe4d9-df60-4580-a1c8-7fbd463a5b6d",
+    "name": "pepsi",
+    "sku": "ROBOFLOW",
+    "category": "Soft drinks",
+    "quantity": 11,
+    "confidence": 0.7631392045454546,
+    "detectedAt": "2026-11-15T16:20:19.049Z"
+  },
+  {
+    "id": "3ede4690-5559-4371-8438-e707e7015e0f",
+    "name": "sprite",
+    "sku": "ROBOFLOW",
+    "category": "Soft drinks",
+    "quantity": 3,
+    "confidence": 0.5559895833333334,
+    "detectedAt": "2026-11-15T16:20:19.049Z"
+  }
+]

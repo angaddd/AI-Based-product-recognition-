@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f5f7f4" />
+    <title>Shelfwise — Inventory intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="/">
+          <span class="brand-mark">s</span
+          ><span>Shelfwise<small>INVENTORY INTELLIGENCE</small></span>
+        </a>
+        <div class="store-switch">
+          <div class="store-icon">L</div>
+          <div>
+            <strong>Local inventory</strong><span>scan results</span>
+          </div>
+          <span class="chevron">⌄</span>
+        </div>
+        <div class="side-label">WORKSPACE</div>
+        <nav>
+          <a class="nav-item active" href="#overview"
+            ><span class="nav-icon">◫</span>Overview</a
+          ><a class="nav-item" href="#inventory">
+            <span class="nav-icon">▤</span>Inventory<span
+              class="nav-count"
+              id="nav-count"
+              >0</span
+            ></a
+          ><a class="nav-item" href="#restock"
+            ><span class="nav-icon">↗</span>Restock plan<span
+              class="nav-dot"
+            ></span
+          ></a>
+        </nav>
+        <div class="side-label tools-label">TOOLS</div>
+        <button class="nav-item" id="upload-nav">
+          <span class="nav-icon">▧</span>Shelf scan
+        </button>
+        <div class="sidebar-bottom">
+          <div class="help-card">
+            <div class="help-orb">✳</div>
+            <strong>Shelf product detection</strong>
+            <p>Upload a shelf photo for inventory check.</p>
+            <button id="help-upload">Scan a shelf <span>↗</span></button>
+          </div>
+          <div class="profile">
+            <div class="avatar">R</div>
+            <div><strong></strong><span>Detection source</span></div>
+          </div>
+        </div>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <div class="crumb">
+            Workspace <span>/</span> <strong>Overview</strong>
+          </div>
+          <div class="top-actions">
+            <span class="sync"><i></i> All changes saved</span
+            ><button class="icon-button" aria-label="Notifications">
+              ♧<b></b>
+            </button>
+            <div class="top-avatar">AK</div>
+          </div>
+        </header>
+        <div class="content">
+          <section class="welcome">
+            <div>
+              <div class="eyebrow">
+                <span class="eyebrow-dot"></span> MONDAY, NOVEMBER 16, 2026
+              </div>
+              <h1>Your shelves, <em>at a glance.</em></h1>
+              <p>
+                AI-powered Smart Inventory Management System
+              </p>
+            </div>
+            <button class="button primary" id="scan-button">
+              <span>▧</span> Scan shelf <span class="button-arrow">↗</span>
+            </button>
+          </section>
+          <section class="notice" id="demo-notice">
+            <div class="notice-icon">i</div>
+            <div>
+              <strong>No scan yet</strong
+              ><span id="detector-notice"
+                >Inventory will appear after a successful shelf scan.</span
+              >
+            </div>
+            <button aria-label="Dismiss" id="dismiss-notice">×</button>
+          </section>
+          <section class="metrics">
+            <article class="metric-card">
+              <div class="metric-top">
+                <span>Detected units</span
+                ><span class="metric-icon green">▤</span>
+              </div>
+              <div class="metric-value" id="total-units">0</div>
+              <div class="metric-foot">
+                <span class="neutral-pill"
+                  >Across <b id="product-count">0</b> classes</span
+                ><span class="metric-caption">Latest scan</span>
+              </div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-top">
+                <span>Needs attention</span
+                ><span class="metric-icon amber">⌁</span>
+              </div>
+              <div class="metric-value" id="attention-count">0</div>
+              <div class="metric-foot">
+                <span class="trend down"
+                  >↗ <b id="critical-count">0</b> critical</span
+                ><span class="metric-caption">Low or critical stock</span>
+              </div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-top">
+                <span>Restock suggested</span
+                ><span class="metric-icon blue">↗</span>
+              </div>
+              <div class="metric-value" id="restock-count">0</div>
+              <div class="metric-foot">
+                <span class="trend neutral">Units needed to reach 10</span>
+              </div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-top">
+                <span>Coverage outlook</span
+                ><span class="metric-icon violet">◷</span>
+              </div>
+              <div class="metric-value" id="coverage-value">—</div>
+              <div class="metric-foot">
+                <span class="trend neutral"
+                  >Sales history is not returned</span
+                >
+              </div>
+            </article>
+          </section>
+          <section class="overview-grid">
+            <article class="panel chart-panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Detected counts</h2>
+                  <p>Product quantities from the latest scan</p>
+                </div>
+                <button class="period-button">
+                  All products <span>⌄</span>
+                </button>
+              </div>
+              <div class="chart-legend">
+                <span><i class="legend-stock"></i> Detected units</span>
+              </div>
+              <div class="bar-chart" id="bar-chart"></div>
+              <div class="chart-foot">
+                <span><i></i> Healthy stock</span
+                ><span><i></i> Needs restock</span><span><i></i> Critical</span>
+              </div>
+            </article>
+            <article class="panel distribution-panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Stock health</h2>
+                  <p>Products by current stock level</p>
+                </div>
+                <button class="more-button" aria-label="More options">
+                  ···
+                </button>
+              </div>
+              <div class="donut-wrap">
+                <div class="donut" id="donut">
+                  <div class="donut-center">
+                    <strong id="donut-total">—</strong><span>products</span>
+                  </div>
+                </div>
+              </div>
+              <div class="distribution-legend" id="distribution-legend"></div>
+              <div class="insight">
+                <span>✳</span>
+                <p id="insight-copy">
+                  Review product levels to see stock insights.
+                </p>
+              </div>
+            </article>
+          </section>
+          <section class="panel inventory-panel" id="inventory">
+            <div class="panel-heading inventory-heading">
+              <div>
+                <h2>Product inventory</h2>
+                <p>A live view of current shelf counts</p>
+              </div>
+              <div class="table-actions">
+                <label class="search"
+                  ><span>⌕</span
+                  ><input
+                    id="search"
+                    type="search"
+                    placeholder="Search products..." /></label
+                ><select id="filter" aria-label="Filter by stock status">
+                  <option value="all">All status</option>
+                  <option>CRITICAL</option>
+                  <option>LOW</option>
+                  <option>OK</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>PRODUCT CLASS</th>
+                    <th>DETECTED COUNT</th>
+                    <th>UNITS TO 10</th>
+                    <th>AVG. CONFIDENCE</th>
+                    <th>STOCK STATUS</th>
+                  </tr>
+                </thead>
+                <tbody id="inventory-body"></tbody>
+              </table>
+            </div>
+            <div class="table-footer">
+              <span id="table-summary">Waiting for scan</span
+              ><span>Latest successful scan is shown</span>
+            </div>
+          </section>
+          <section class="bottom-grid" id="restock">
+            <article class="panel restock-panel">
+              <div class="panel-heading">
+                <div>
+                  <div class="heading-with-icon">
+                    <span class="restock-mark">↗</span>
+                    <h2>Restock priority</h2>
+                  </div>
+                  <p>Products that need a little attention</p>
+                </div>
+                <a href="#inventory" class="text-link"
+                  >View inventory <span>→</span></a
+                >
+              </div>
+              <div id="restock-list"></div>
+            </article>
+            <article class="panel scan-panel">
+              <div class="scan-art">
+                <div class="scan-orbit orbit-one"></div>
+                <div class="scan-orbit orbit-two"></div>
+                <div class="scan-box"><span>▤</span><i></i><i></i><i></i></div>
+                <span class="spark spark-one">✦</span
+                ><span class="spark spark-two">✧</span>
+              </div>
+              <div class="scan-copy">
+                <span class="scan-kicker">QUICK INVENTORY CHECK</span>
+                <h2>See what’s on shelves.</h2>
+                <p>Upload a shelf photo to refresh detected product counts.</p>
+                <button class="button light-button" id="scan-bottom">
+                  Upload shelf photo <span>↗</span>
+                </button>
+              </div>
+            </article>
+          </section>
+          <footer>
+            Shelfwise <span>Inventory insights for the everyday store.</span
+            ><button id="export-button">Export inventory ↓</button>
+          </footer>
+        </div>
+      </main>
+    </div>
+    <input type="file" id="image-file" accept="image/png,image/jpeg" hidden />
+    <div class="toast" id="toast" role="status"></div>
+    <dialog id="scan-dialog">
+      <div class="dialog-head">
+        <div>
+          <span class="dialog-kicker">SHELF SCAN</span>
+          <h2>Start an inventory check</h2>
+        </div>
+        <button class="close-dialog" aria-label="Close">×</button>
+      </div>
+      <p class="scan-dialog-intro">
+        Upload a shelf photo 
+        Detected class counts update the inventory table.
+      </p>
+      <div class="drop-zone" id="drop-zone">
+        <div class="drop-icon">▧</div>
+        <strong>Drop a shelf photo here</strong
+        ><span>JPG or PNG · up to 8 MB</span
+        ><button class="button secondary" id="choose-image" type="button">
+          Choose image
+        </button>
+        <div class="image-wrap">
+          <img id="image-preview" alt="Shelf photo preview" /><canvas
+            id="detection-canvas"
+          ></canvas>
+        </div>
+      </div>
+      <div class="scan-result" id="scan-result"></div>
+      <div class="dialog-actions">
+        <button class="button secondary close-dialog">Done</button
+        ><button class="button primary" id="run-scan" disabled>
+          Run detection <span>→</span>
+        </button>
+      </div>
+    </dialog>
+    <script src="/app.js"></script>
+  </body>
+</html>

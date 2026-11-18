@@ -1,0 +1,3 @@
+# Hosted Roboflow workflow inference. Pillow validates and reads uploaded image dimensions.
+inference-sdk>=0.9
+Pillow>=10
